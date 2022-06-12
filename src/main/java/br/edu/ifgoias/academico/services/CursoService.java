@@ -33,14 +33,10 @@ public class CursoService {
 	}
 
 	public Curso update(Integer id, Curso obj) {
-		return cursoRep.findById(id).map(
-									curso -> {
-												curso.setNome( obj.getNome() );
-												return cursoRep.save(curso);  
-											 }
-								).orElseThrow(
-									() -> new ResponseStatusException(HttpStatus.NOT_FOUND)
-								);
+		return cursoRep.findById(id).map(curso -> {
+			curso.setNome(obj.getNome());
+			return cursoRep.save(curso);
+		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
 }
